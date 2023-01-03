@@ -1,1 +1,1 @@
-# cookie-conent-mangement-system
+# cookie-consent-management-system
