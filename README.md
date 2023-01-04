@@ -1,1 +1,2 @@
 # cookie-consent-management-system
+The open-source cookie consent management system is a tool that helps websites follow laws and regulations related to cookies and tracking technologies, while also providing users with information about the types of cookies being used. It can help websites avoid fines and legal issues, increase user trust and confidence, and is customizable to fit the needs of the website. It also allows websites to easily adapt to changes in laws and regulations.
