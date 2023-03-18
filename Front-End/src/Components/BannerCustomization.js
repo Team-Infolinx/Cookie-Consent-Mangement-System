@@ -150,7 +150,7 @@ function BannerCustomization() {
         <Box
             sx={{
                 width: 1500,
-                height: 700,
+                height: "auto",
                 backgroundColor: '#fefefe',
                 borderRadius:5,
                 pt:{ lg:3,md: 3, sm:3, xs: 5},
@@ -166,7 +166,7 @@ function BannerCustomization() {
 
 
 
-            <Grid container direction={'row'} spacing={2}>
+            <Grid container sx={{flexDirection: { lg:"row",sm: "column-reverse", xs: "column-reverse"}}} spacing={2}>
                 <Grid container item direction="column" justify={"center"} xs={3}  lg={3} xl={3}>
                     <Typography variant={"h5"} sx={{color:"#004587",pb:{lg:3,md: 3, sm:3, xs: 3}}} fontWeight={"Bold"}>Settings</Typography>
 

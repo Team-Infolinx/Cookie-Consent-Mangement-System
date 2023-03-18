@@ -9,7 +9,7 @@ const CustSelectBox = (props) =>{
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    label="Age"
+                    label={props.name}
                     onChange={props.fun}
 
                 >
