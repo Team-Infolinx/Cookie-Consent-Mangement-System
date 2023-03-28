@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 function Analytics() {
   return (
     <div>
-        <Typography variant={"h3"} sx={{pt:3,color:"#00a5ff"}}>Welcome to Back!</Typography>
+        <Typography variant={"h3"} sx={{pt:3,color:"#00a5ff"}}>Welcome to Analytics!</Typography>
 
         <Grid container spacing={3} sx={{pt:5}}>
 
