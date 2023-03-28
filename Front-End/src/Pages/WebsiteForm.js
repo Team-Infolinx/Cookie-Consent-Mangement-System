@@ -5,7 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import GeneralSettings from "../Components/GeneralSettings";
-import CookieSettings from "../Components/CookieSettings";
+import CookieSettings from "../Components/coookie-settings-components/CookieSettings";
 import PrivacyRegulation from "../Components/PrivacyRegulation";
 import BannerCustomization from "../Components/BannerCustomization";
 import Script from "../Components/Script";
@@ -59,6 +59,7 @@ function WebsiteForm() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          centered
         >
           <Tab label="General Settings" {...a11yProps(0)} />
           <Tab label="Cookie" {...a11yProps(1)} />

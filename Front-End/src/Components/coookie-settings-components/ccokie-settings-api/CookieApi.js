@@ -1,0 +1,42 @@
+export default [
+  {
+    key: "1",
+    id: "PHPSESSID",
+    type: "https",
+    domain: "example.com",
+    duration: "sesstion",
+    category: "",
+  },
+  {
+    key: "2",
+    id: "PHPSESSID",
+    type: "https",
+    domain: "example.com",
+    duration: "sesstion",
+    category: "",
+  },
+  {
+    key: "3",
+    id: "PHPSESSID",
+    type: "https",
+    domain: "example.com",
+    duration: "sesstion",
+    category: "",
+  },
+  {
+    key: "4",
+    id: "PHPSESSID",
+    type: "https",
+    domain: "example.com",
+    duration: "sesstion",
+    category: "",
+  },
+  {
+    key: "5",
+    id: "GHHG",
+    type: "https",
+    domain: "lakshan.com",
+    duration: "hahaha",
+    category: "",
+  },
+];
