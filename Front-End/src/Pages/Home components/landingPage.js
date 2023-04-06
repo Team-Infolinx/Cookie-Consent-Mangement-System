@@ -1,8 +1,7 @@
-import {Button, Grid, Typography} from "@mui/material";
-import {Stack} from "@mui/system";
+import { Grid, Typography} from "@mui/material";
 import homePageBackground from "../../Assets/home-page-background.svg";
-import logo from "../../Assets/web-safe-logo.svg";
 import landingImage from "../../Assets/landing-image.svg";
+import HomeNavBar from "./homeNavBar";
 
 
 
@@ -11,45 +10,19 @@ const LandingPage = () => {
 
     return (
 
-        <Grid className="landingPage"
+        <Grid  className="landingPage"
               style={{
-
-
                   minHeight: "100vh",
                   backgroundSize: "cover",
                   backgroundPosition: "center center",
 
               }}
-              sx={{backgroundImage:{xl:`url(${homePageBackground})`,lg:"none"},bgcolor: {lg: "#024481",sm: "#024481", xs: "#024481",} }}
+              sx={{backgroundImage:{xl:`url(${homePageBackground})`},bgcolor: {lg: "#036fc5",md: "#036fc5",sm: "#036fc5", xs: "#036fc5",}, minHeight: {sm: "30vh", xs: "30vh"}}}
         >
-
-            <Grid container spacing={2} sx={{ pl: { lg:10,md: 10, sm: 10, xs: 10},
-                pt:{ lg:5,md: 5, sm:5, xs: 5},
-
-
-            }}>
-
-                <Grid item xs={2} alignContent="screenLeft" >
-                    <img src={logo}
-                         style={{
-                             height: 100,
-                             marginRight: '1em',
-                            
-                         }} />
-                </Grid>
-
-                <Grid item xs={6}/>
-                <Grid item xs={4} >
-                    <Stack spacing={2} direction="row-reverse" justifyContent={"space-around"} pt={10} pr={10}>
-                        <Button variant="contained" >Log in</Button>
-                        <Button variant="contained">Sign Up</Button>
-                    </Stack>
-                </Grid>
-
-            </Grid>
+            <HomeNavBar />
 
             <Grid container direction={"row"} justify="center" alignItems={"center"} sx={{pl: { lg: 10,md: 10, sm: 10, xs: 10}}}>
-
+                <Grid item lg={12} sx={{height:"200px"}} />
                 <Grid item lg={5}>
                     <Typography style={{color: "#ffffff"}} variant="h3">Effortlessly manage cookie <br/>consent on your
                         website</Typography>
@@ -65,12 +38,12 @@ const LandingPage = () => {
 
                          }}/>
 
-                   <div style={{
+                   {/*<div style={{
                         backgroundImage: "url(${landingImage})",
                         backgroundRepeat: "no-repeat",
                         minHeight: "50vh",
 
-                    }}/>
+                    }}/>*/}
                 </Grid>
 
             </Grid>

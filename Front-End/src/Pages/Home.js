@@ -5,13 +5,19 @@ import AboutUs from "./Home components/aboutUs";
 import CustomerFeedBack from "./Home components/feedBack";
 import Footer from "./Home components/footer";
 
+
 function Home() {
   return (
     <div>
-
-        <LandingPage />
-        <Features />
-        <AboutUs />
+        <section id={'homeSection_1'}>
+            <LandingPage />
+        </section>
+        <section id={'homeSection_2'}>
+            <Features />
+        </section>
+        <section id={'homeSection_3'}>
+            <AboutUs />
+        </section>
         <CustomerFeedBack />
         <Footer />
 

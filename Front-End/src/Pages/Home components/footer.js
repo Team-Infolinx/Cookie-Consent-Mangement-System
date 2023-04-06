@@ -1,12 +1,16 @@
-import { Typography } from '@mui/material';
+import {Button,Typography} from '@mui/material';
 import Grid from '@mui/material/Grid';
-import logoWhite from "../../Assets/web-safe-logo.svg";
+import logoWhite from "../../Assets/web-safe-logo - white.svg";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import { tab } from '@testing-library/user-event/dist/tab';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import {BrowserRouter,Link} from 'react-router-dom';
+import {HashLink} from "react-router-hash-link";
+
+
 
 
 const Footer = () => {
@@ -19,14 +23,13 @@ const Footer = () => {
     
 
             }}>
-        
-        
+
         <Grid container direction="row" justifyContent="space-evenly" alignItems="center">
             
             {/*Column 1 */}
-            <Grid container direction="column" justify={"center"} alignItems={"center"} item lg={3} md={12} sm={12}
-                      xs={12}>
-                <div className="white logo">
+            <Grid container direction="column" justify={"center"} alignItems={"center"} item lg={4} md={12} sm={12}
+                      xs={12}  >
+                <div className="white logo" style={{paddingLeft:"10px"}}>
                     <img src={logoWhite}
                             alt={"logo white"}
                             style={{
@@ -36,26 +39,38 @@ const Footer = () => {
                             }}></img></div>
                 <Typography style={{ color: "#ffffff" }} variant="h5">About us</Typography>
                 <Typography style={{ color: "#ffffff" }} variant="h6">We manage your consent</Typography>
-                <ul className='social icons'style={{display:'flex', justifyContent:'space-between', listStyleType:'none' }}>
+                <ul className='social icons'style={{display:'flex', justifyContent:'space-between', listStyleType:'none',paddingRight:"40px" }}>
                     <li style={{width:"30%", textAlign:"center", color:"#ffffff"}}><FacebookIcon /></li>
                     <li style={{width:"30%", textAlign:"center",color:"#ffffff"}}><InstagramIcon /></li>
                     <li style={{width:"30%", textAlign:"center",color:"#ffffff"}}><LinkedInIcon /></li>
-
+                    <li style={{width:"30%", textAlign:"center",color:"#ffffff"}}><TwitterIcon /></li>
                 </ul>
             </Grid>
 
+
             {/*Column 2 */}
-            <Grid container direction="column" justify={"center"} alignItems={"center"} item lg={3} md={12} sm={12}
+            <Grid container direction="column" justify={"center"} alignItems={"center"} item lg={4} md={12} sm={12}
                       xs={12}>
                 <Typography variant={"h5"} style={{ color: "#ffffff" }}>Useful links</Typography>
-                <Typography variant={"h6"} style={{ color: "#ffffff" }}>Home</Typography>
-                <Typography variant={"h6"} style={{ color: "#ffffff" }}>Features</Typography>
-                <Typography variant={"h6"} style={{ color: "#ffffff" }}>About Us</Typography>
+                <HashLink smooth to={'/#homeSection_1'} style={{ textDecoration: 'none' }}>
+                    <Button variant={"text"}>
+                        <Typography variant={"h6"} style={{ color: "#ffffff" }}>Home</Typography>
+                    </Button>
+                </HashLink>
+                <HashLink smooth to={'/#homeSection_2'}  style={{ textDecoration: 'none' }}>
+                    <Button variant={"text"}>
+                        <Typography variant={"h6"} style={{ color: "#ffffff" }}>Features</Typography>
+                    </Button>
+                </HashLink>
+                <HashLink smooth to={'/#homeSection_3'}  style={{ textDecoration: 'none' }}>
+                    <Button variant={"text"}>
+                        <Typography variant={"h6"} style={{ color: "#ffffff" }}>About Us</Typography></Button>
+                </HashLink>
             </Grid>
             
 
             {/*Column 3 */}
-            <Grid container direction="column" justify={"center"} alignItems={"center"} item lg={3} md={12} sm={12} xs={12}>
+            <Grid container direction="column" justify={"center"} alignItems={"center"} item lg={4} md={12} sm={12} xs={12}>
             <Typography variant={"h5"} style={{ color: "#ffffff" }}>Contact with us</Typography>
             <Typography variant={"h6"} style={{ color: "#ffffff" }}><DraftsOutlinedIcon />WebSafe@gmail.com</Typography>
             <Typography variant={"h6"} style={{ color: "#ffffff" }}><LocalPhoneIcon />+9400-000-0000</Typography>

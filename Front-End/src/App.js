@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import "./App.css";
 import Analytics from "./Pages/Analytics";
 import Dashboard from "./Pages/Dashboard";
@@ -9,6 +9,7 @@ import Signup from "./Pages/Signup";
 import WebsiteForm from "./Pages/WebsiteForm";
 import Websites from "./Pages/Websites";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+
         </Route>
         <Route path="/user" element={<Layout />}>
           <Route index element={<Dashboard />} />
