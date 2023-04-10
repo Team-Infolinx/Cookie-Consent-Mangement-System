@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("api/v1/")
+@CrossOrigin("http://localhost:3001")
 public class WebsiteController {
 
     private final WebsiteService websiteService;
@@ -34,5 +35,15 @@ public class WebsiteController {
             @PathVariable(name = "websiteId") Long websiteId
     ){
         return websiteService.deleteWebsite(userId,websiteId);
+    }
+
+    @PutMapping("/{userId}/{websiteId}/updateWebsite")
+    public Website updateWebsite(
+            @PathVariable(name = "userId") Long userId,
+            @PathVariable(name = "websiteId") Long websiteId,
+            @RequestBody Website website
+
+    ){
+        return  websiteService.updateWebsite(userId,websiteId,website);
     }
 }

@@ -17,8 +17,8 @@ function CookieCategoryList(props) {
       }}
     >
       {props.cookieCategories.map((category) => (
-        <ListItem key={category} divider>
-          <ListItemText primary={category} />
+        <ListItem key={category.categoryId} divider>
+          <ListItemText primary={category.categoryName} />
           <IconButton
             size="small"
             onClick={() => props.handleDeleteCategory(category)}

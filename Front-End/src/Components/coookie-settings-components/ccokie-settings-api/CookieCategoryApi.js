@@ -1,9 +1,34 @@
 export default [
-  "Functional",
-  "Necessary",
-  "Performance",
-  "Advertisment",
-  // {
+  {
+    categoryName : "Necessary"
+  },
+  {
+    categoryName : "Performance"
+  },
+  {
+    categoryName : "Functional"
+  }
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // {
   //   categoryId: 1,
   //   categoryName: "Functional",
   // },
@@ -23,4 +48,3 @@ export default [
   //   categoryId: 5,
   //   categoryName: "Functional2",
   // },
-];

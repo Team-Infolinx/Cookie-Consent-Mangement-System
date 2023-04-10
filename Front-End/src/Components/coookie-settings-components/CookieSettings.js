@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import Grid from "@mui/material/Grid";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Typography } from "@mui/material";
 import CookieCategoryList from "./CookieCategoryList";
 import CookieIcon from "@mui/icons-material/Cookie";
@@ -9,20 +9,23 @@ import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import Cookie from "./Cookie";
 import CookieApi from "./ccokie-settings-api/CookieApi";
 import CookieCategoryApi from "./ccokie-settings-api/CookieCategoryApi";
-import { Category, FlareSharp } from "@mui/icons-material";
 import AddCategoryDialog from "./AddCategoryDialog";
 import DeleteCategoryDialogBox from "./DeleteCategoryDialogBox";
+import axios from "axios";
 
-function CookieSettings() {
-  const [cookies, setCookies] = React.useState(CookieApi);
-  const [cookieCategories, setCookieCategories] =
-    React.useState(CookieCategoryApi);
+function CookieSettings(props) {
+  const [cookies, setCookies] = useState(CookieApi);
+  const [cookieCategories, setCookieCategories] = useState([]);
 
-  //Related to AddCategoryDialog component
-  const [isAddingCategory, setIsAddingCategory] = React.useState(false);
-  const [newCategoryError, setNewCategoryError] = React.useState(false);
-  const [newCategoryErrorMessage, setNewCategoryErrorMessage] =
-    React.useState("");
+  useEffect(() => {
+    axios.post(`http://localhost:8080/api/v1/1/addCookieCategoryList` , CookieCategoryApi)
+        .then((response) => {setCookieCategories(response)})
+  })
+
+  //Related to AddCategoryDialog component.
+  const [isAddingCategory, setIsAddingCategory] = useState(false);
+  const [newCategoryError, setNewCategoryError] = useState(false);
+  const [newCategoryErrorMessage, setNewCategoryErrorMessage] = useState("");
 
   function handleAddCategoryClick() {
     setIsAddingCategory(true);
@@ -31,14 +34,13 @@ function CookieSettings() {
   function handleIsAddingCategory() {
     setIsAddingCategory(false);
   }
-
+  // Validating new category.
   function addNewCategory(newCategory) {
     setNewCategoryError(false);
     setNewCategoryErrorMessage("");
     if (newCategory !== "") {
       for (let i = 0; i < cookieCategories.length; i++) {
         if (cookieCategories[i] === newCategory) {
-          console.log("category exist");
           setNewCategoryError(true);
           setNewCategoryErrorMessage("The category enetered is already exist.");
           return;
@@ -49,37 +51,41 @@ function CookieSettings() {
 
       return;
     }
-    console.log("Empty inputFeild");
     setNewCategoryError(true);
     setNewCategoryErrorMessage("Text feild can not be empty.");
   }
-  //end of AddCategoryDialog
 
-  //Related to Deleting Category
-  const [IsDeletingCategory, setIsDeletingCategory] = React.useState(false);
-  const [deleteConfirmation, setDeleteConfirmation] = React.useState(false);
+  //Related to Deleting Category.
+  const [showDeleteConfirmation, setShowDeleteConfirmation] =
+    React.useState(false);
+  const [categoryToDelete, setCategoryToDelete] = React.useState(null);
 
-  function handleOpenDeletingDialogBox() {
-    setIsDeletingCategory(true);
+  function handleDeleteCategory(category) {
+    setShowDeleteConfirmation(true);
+    setCategoryToDelete(category);
   }
 
-  function handleCloseDeletingDialogBox() {
-    setIsDeletingCategory(false);
-  }
-
-  function deleteConfirm(confirmation) {
-    setDeleteConfirmation(confirmation);
-  }
-
-  function handleDeleteCategory(deletingcategory) {
-    handleOpenDeletingDialogBox();
-
-    if (deleteConfirm) {
+  function handleDeleteConfirmation(confirm) {
+    if (confirm) {
       const newCategories = cookieCategories.filter(
-        (category) => category !== deletingcategory
+        (category) => category !== categoryToDelete
       );
       setCookieCategories(newCategories);
     }
+    setShowDeleteConfirmation(false);
+    setCategoryToDelete(null);
+  }
+
+  // Cookie Categorization using categories.
+
+  function handleCategorization(event, cookieId) {
+    const newCookies = cookies.map((cookie) => {
+      if (cookie.id === cookieId) {
+        return { ...cookie, category: event.target.value };
+      }
+      return cookie;
+    });
+    setCookies(newCookies);
   }
 
   return (
@@ -126,11 +132,10 @@ function CookieSettings() {
             newCategoryErrorMessage={newCategoryErrorMessage}
           />
           <DeleteCategoryDialogBox
-            open={IsDeletingCategory}
-            close={handleCloseDeletingDialogBox}
-            deleteConfirm={deleteConfirm}
+            open={showDeleteConfirmation}
+            handleDeleteConfirmation={handleDeleteConfirmation}
           />
-          ;
+
         </Grid>
         <Grid item xs={8}>
           <Typography
@@ -141,9 +146,10 @@ function CookieSettings() {
           </Typography>
           {cookies.map((cookie) => (
             <Cookie
-              key={cookie.key}
+              key={cookie.id}
               cookie={cookie}
               cookieCategories={cookieCategories}
+              handleCategorization={handleCategorization}
             />
           ))}
         </Grid>
@@ -152,10 +158,14 @@ function CookieSettings() {
         sx={{
           display: "flex",
           alignItems: "flex-end",
-          flexDirection: "column",
+          flexDirection: "row",
           pt: "32px",
+          justifyContent : "space-between"
         }}
       >
+        <Button variant="contained" sx={{ mt: 1, bgcolor: "#00A5FF", mb: 1 }} onClick={props.handleBack}>
+          Back
+        </Button>
         <Button variant="contained" sx={{ mt: 1, bgcolor: "#00A5FF", mb: 1 }}>
           Save Changes
         </Button>

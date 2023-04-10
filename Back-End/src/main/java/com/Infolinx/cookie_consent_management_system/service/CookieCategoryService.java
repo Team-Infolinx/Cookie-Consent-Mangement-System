@@ -51,4 +51,24 @@ public class CookieCategoryService {
         }
         return "Unsuccessful";
     }
+
+    //Updating cookie category name.
+    public CookieCategory updateCookieCategory(Long categoryId,String newCategoryName) {
+        CookieCategory cookieCategory = cookieCategoryRepository.findById(categoryId).orElse(null);
+        if (cookieCategory != null) {
+            cookieCategory.setCategoryName(newCategoryName);
+            return cookieCategoryRepository.save(cookieCategory);
+        }
+        return null;
+    }
+
+    public List<CookieCategory> addCookieCategoryList(Long websiteId, List<CookieCategory> cookieCategoryList) {
+        Website website = websiteRepository.findById(websiteId).orElse(null);
+        if (website != null) {
+            cookieCategoryList.forEach(cookieCategory -> {cookieCategory.setWebsite(website);});
+            cookieCategoryRepository.saveAll(cookieCategoryList);
+            return cookieCategoryRepository.getCookieCategoriesByWebsiteEquals(website);
+        }
+        return null;
+    }
 }

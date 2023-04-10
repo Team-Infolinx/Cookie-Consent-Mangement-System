@@ -1,21 +1,29 @@
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-function GeneralSettings() {
-  const [configName, setConfigName] = React.useState("");
-  const [domain, setDomain] = React.useState("");
+function GeneralSettings(props) {
+  const [generalSettings, setGeneralSettings] = useState({
+    configName: props.website.configName,
+    domain: props.website.domain,
+  });
+  const { configName, domain } = generalSettings;
+
+  useEffect(() => {
+    setGeneralSettings({
+      configName: props.website.configName,
+      domain : props.website.domain
+    })
+  },[props.website])
+
+  // Related to error handling.
   const [configNameError, setConfigNameError] = React.useState(false);
   const [domainError, setDomainError] = React.useState(false);
   const [errorMessageForName, setErrorMessageForName] = React.useState("");
   const [errorMessageForDomain, setErrorMessageForDomain] = React.useState("");
 
-  function handleConfigName(event) {
-    setConfigName(event.target.value);
-  }
-
-  function handleDomain(event) {
-    setDomain(event.target.value);
+  function onInputChange(event) {
+    setGeneralSettings({...generalSettings,[event.target.name] : event.target.value})
   }
 
   function handleSaveChanges(event) {
@@ -25,22 +33,29 @@ function GeneralSettings() {
     setErrorMessageForDomain("");
     setErrorMessageForName("");
 
+    let isConfigNameValid = true;
+    let isDomainValid = true;
+
     if (configName === "") {
       setConfigNameError(true);
       setErrorMessageForName("Configure Name can not be empty");
+      isConfigNameValid = false;
     }
     if (domain !== "") {
       if (isValidDomain(domain) === false) {
         setDomainError(true);
         setErrorMessageForDomain("Enter a valid domain.");
+        isDomainValid=false;
       }
     } else {
       setDomainError(true);
       setErrorMessageForDomain("Domain can not be empty");
+      isDomainValid=false;
     }
 
-    if (configNameError === false && domainError === false) {
-      console.log(configName + " and " + domain);
+    if (isConfigNameValid === true && isDomainValid === true) {
+      props.handleConfigNameAndDomainChange(configName,domain)
+      // props.handleNext();
     }
   }
 
@@ -55,31 +70,33 @@ function GeneralSettings() {
       component="form"
       noValidate
       autoComplete="off"
-      onSubmit={handleSaveChanges}
+      onSubmit={(event)=>handleSaveChanges(event)}
     >
       <TextField
         required
-        id="outlined-required"
         label="Configuration Name"
         placeholder="Enter your configuration name here..."
         size="normal"
         fullWidth
         sx={{ mt: 3 }}
-        onChange={handleConfigName}
+        name="configName"
+        value={configName}
         error={configNameError}
         helperText={errorMessageForName}
+        onChange={(event) => onInputChange(event)}
       ></TextField>
       <TextField
         required
-        id="outlined-required"
         label="Domain"
         placeholder="Enter your domain here..."
         size="normal"
         fullWidth
         sx={{ mt: 3 }}
-        onChange={handleDomain}
+        name="domain"
+        value={domain}
         error={domainError}
         helperText={errorMessageForDomain}
+        onChange={(event) => onInputChange(event)}
       ></TextField>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Button

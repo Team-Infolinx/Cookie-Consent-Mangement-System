@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,23 +26,17 @@ public class Website {
             updatable = false
     )
     private Long websiteId;
-
-    @Column(name = "config_name")
     private String configName;
-
-    @Column(name = "domain")
     private String domain;
-
-    @Column(name = "user_id")
     private Long userId;
 
     @OneToMany(
             mappedBy = "website",
             orphanRemoval = true,
             fetch = FetchType.EAGER,
-            cascade = CascadeType.REMOVE
+            cascade = CascadeType.ALL
     )
-    @JsonBackReference
+//    @JsonBackReference
     private List<Cookie> cookies = new ArrayList<>();
 
     @OneToMany(
@@ -48,7 +44,7 @@ public class Website {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER
     )
-    @JsonBackReference("website-category")
+//    @JsonBackReference("website-category")
     private List<CookieCategory> cookieCategories = new ArrayList<>();
 
     public void addCookieCategoryToWebsite(CookieCategory cookieCategory){

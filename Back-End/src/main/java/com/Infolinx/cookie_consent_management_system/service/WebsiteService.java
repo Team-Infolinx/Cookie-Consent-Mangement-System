@@ -39,4 +39,18 @@ public class WebsiteService {
         }
         return "Unsuccessful";
     }
+
+    public Website updateWebsite(Long userId, Long websiteId, Website updatedWebsite) {
+        Website website = websiteRepository.findById((websiteId)).orElse(null);
+
+        if (website != null) {
+            if (website.getUserId() == userId) {
+                website.setConfigName(updatedWebsite.getConfigName());
+                website.setDomain(updatedWebsite.getDomain());
+                return websiteRepository.save(website);
+            }
+            return null;
+        }
+        return null;
+    }
 }

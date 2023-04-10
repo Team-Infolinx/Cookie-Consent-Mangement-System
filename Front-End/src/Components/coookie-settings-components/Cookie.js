@@ -21,19 +21,19 @@ function Cookie(props) {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Type</TableCell>
+                <TableCell>Cookie Name</TableCell>
                 <TableCell>Domain</TableCell>
-                <TableCell>Duration</TableCell>
+                <TableCell>Path</TableCell>
+                <TableCell>Expire Date</TableCell>
                 <TableCell>Category</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow>
-                <TableCell>{props.cookie.id}</TableCell>
-                <TableCell>{props.cookie.type}</TableCell>
+                <TableCell>{props.cookie.cookieName}</TableCell>
                 <TableCell>{props.cookie.domain}</TableCell>
-                <TableCell>{props.cookie.duration}</TableCell>
+                <TableCell>{props.cookie.path}</TableCell>
+                <TableCell>{props.cookie.expireDate}</TableCell>
                 <TableCell>
                   <TextField
                     select
@@ -42,6 +42,10 @@ function Cookie(props) {
                     fullWidth
                     size="small"
                     defaultValue=""
+                    value={props.cookie.category}
+                    onChange={(event) =>
+                      props.handleCatergorization(event, props.cookie.id)
+                    }
                   >
                     {props.cookieCategories.map((category) => (
                       <MenuItem key={category} value={category}>

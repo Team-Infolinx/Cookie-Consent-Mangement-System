@@ -63,36 +63,3 @@ function AddCategoryDialog(props) {
 }
 
 export default AddCategoryDialog;
-
-// const [newCategory, setNewCategory] = React.useState("");
-//   const [error, setError] = React.useState(false);
-//   const [errorMessage, setErrorMessage] = React.useState("");
-//   const cookieCategories = props.CookieCategories;
-
-//   function handleNewCategory(event) {
-//     setNewCategory(event.target.value);
-//   }
-
-//   function handleSave() {
-//     setError(false);
-//     setErrorMessage("");
-//     if (newCategory === "") {
-//       setError(true);
-//       setErrorMessage("The input feild can not be empty.");
-//     } else if (isNewCategoryExist) {
-//       setError(true);
-//       setErrorMessage("The category is already exist.");
-//     } else {
-//       console.log(newCategory);
-//       props.addNewCategory(newCategory);
-//     }
-//   }
-
-//   function isNewCategoryExist() {
-//     for (let i = 0; i < props.cookieCategories.length; i++) {
-//       if (props.cookieCategories[i].categoryName === newCategory) {
-//         return true;
-//       }
-//     }
-//     return false;
-//   }

@@ -27,4 +27,5 @@ public class CookieController {
     public List<Cookie> addCookieCategoryToCookies(@PathVariable(name = "websiteId") Long websiteId, @RequestBody List<Cookie> cookies){
         return cookieService.addCookieCategoryToCookies(websiteId , cookies);
     }
+
 }

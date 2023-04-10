@@ -1,6 +1,6 @@
 import {
-  Dialog,
   Button,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -8,19 +8,18 @@ import {
 } from "@mui/material";
 import React from "react";
 
-function DeleteCategoryDialogBox(props) {
+function WebsiteDeleteDialog(props) {
   return (
     <Dialog
       open={props.open}
       onClose={() => props.handleDeleteConfirmation(false)}
     >
       <DialogTitle sx={{ color: "#004587", fontWeight: "600" }}>
-        Delete category
+        Delete website
       </DialogTitle>
       <DialogContent>
         <DialogContentText sx={{ color: "#004587" }}>
-          Are you sure you want to delete {props.category} category? This action
-          cannot be undone.
+          Are you sure you want to delete website? This action cannot be undone.
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ pr: "24px", pb: "16px" }}>
@@ -43,4 +42,4 @@ function DeleteCategoryDialogBox(props) {
   );
 }
 
-export default DeleteCategoryDialogBox;
+export default WebsiteDeleteDialog;
